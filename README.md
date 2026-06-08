@@ -20,8 +20,9 @@ A crowdsourced accessibility mapping and route-planning application built to sup
    - 4.6 [Run the frontend](#46-run-the-frontend)
 5. [Running Tests](#5-running-tests)
 6. [API Overview](#6-api-overview)
-7. [Tech Stack](#7-tech-stack)
-8. [Evaluation Poster](#8-evaluation-poster)
+7. [Screenshots](#7-screenshots)
+8. [Tech Stack](#8-tech-stack)
+9. [Evaluation Poster](#9-evaluation-poster)
 
 ---
 
@@ -387,7 +388,31 @@ The scheduler runs every hour and automatically expires PENDING or VERIFIED repo
 
 ---
 
-## 7. Tech Stack
+## 7. Screenshots
+
+### Map View
+
+![AccessPath map view](docs/screenshots/appendix-n-fe3-map.png)
+
+### Report Submission
+
+![Submit accessibility report](docs/screenshots/appendix-o-fe4-draft.png)
+
+### Route Planner
+
+![Accessible route planner](docs/screenshots/appendix-r-fe7-routes.png)
+
+### Moderation Queue
+
+![Moderation queue](docs/screenshots/appendix-q-fe6-moderation.png)
+
+### Login
+
+![Login page](docs/screenshots/appendix-l-fe1-login.png)
+
+---
+
+## 8. Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -401,7 +426,7 @@ The scheduler runs every hour and automatically expires PENDING or VERIFIED repo
 
 ---
 
-## 8. Evaluation Poster
+## 9. Evaluation Poster
 
 The Milestone 4 reflective evaluation poster is located at [`docs/poster.html`](docs/poster.html).
 
