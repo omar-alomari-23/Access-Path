@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <!-- Test accounts with known passwords for integration testing -->
+    <changeSet id="008" author="accesspath">
+        <sql>
+            INSERT INTO users (user_id, email, password_hash, role, created_at) VALUES
+            ('44444444-4444-4444-4444-444444444444', 'alice@test.com', '$2b$10$fjNfRVVe5sgF90xZsxHA5OMVMQApsdUbSgEfDdLYIwykMy6MC1/2e', 'REPORTER', '2026-03-22T08:15:00Z'),
+            ('55555555-5555-5555-5555-555555555555', 'bob@test.com', '$2b$10$iy8M5GXwkGREOd2SmpFmp.Nkm5yIdvB61wukM.JKC70zYEJLT1XZi', 'NAVIGATOR', '2026-03-22T08:20:00Z'),
+            ('66666666-6666-6666-6666-666666666666', 'modtest@test.com', '$2b$10$Pgol6rRKC7CGTthvL6GKPOCnVUh0uLB5JKSqGTFkuhNUpLq8WKXNC', 'MODERATOR', '2026-03-22T08:25:00Z')
+            ON CONFLICT (email) DO NOTHING;
+        </sql>
+
+        <rollback>
+            <sql>
+                DELETE FROM users WHERE user_id IN (
+                    '44444444-4444-4444-4444-444444444444',
+                    '55555555-5555-5555-5555-555555555555',
+                    '66666666-6666-6666-6666-666666666666'
+                );
+            </sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

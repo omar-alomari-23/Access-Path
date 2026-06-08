@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AccessPath — A1 Academic Evaluation Poster</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @media print {
+    @page { size: A1 landscape; margin: 0; }
+    body  { margin: 0; background: white; }
+    .poster { width: 100%; box-shadow: none; margin: 0; }
+  }
+  :root {
+    --navy:#0d2340; --blue:#1a4a8a; --blue-mid:#2561b0;
+    --blue-light:#d6e6f7; --blue-pale:#edf4fc;
+    --accent:#e8a020; --accent-light:#fef3de;
+    --green:#1a7a4a; --green-light:#d8f0e3;
+    --amber:#b85c00; --amber-light:#fdecd6;
+    --red-light:#fde8e8; --red:#b02020;
+    --grey:#5a6372; --grey-light:#f0f3f7;
+    --white:#ffffff; --border:#c8d8ec;
+    --text:#1a2332; --text-secondary:#4a5568;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body {
+    font-family:'IBM Plex Sans',sans-serif;
+    background:#dde4ee; color:var(--text);
+    font-size:10.8px; line-height:1.42;
+  }
+
+  /* ── POSTER SHELL: A1 landscape at screen scale ──
+     A1 = 841 × 594 mm. At ~1.414px/mm: 1189 × 840px screen.
+     @page ensures correct A1 output when printed. */
+  .poster {
+    width:1189px; min-height:840px;
+    background:var(--white);
+    margin:16px auto;
+    display:flex; flex-direction:column;
+    box-shadow:0 8px 40px rgba(0,0,0,0.20);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background:var(--navy);
+    padding:16px 28px 13px;
+    display:flex; align-items:flex-start; gap:18px;
+    position:relative; overflow:hidden; flex-shrink:0;
+  }
+  .header::after {
+    content:''; position:absolute; bottom:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg,var(--accent) 0%,#2561b0 50%,var(--navy) 100%);
+  }
+  .header-logo {
+    width:46px; height:46px; background:var(--accent); border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Source Serif 4',serif; font-size:19px; font-weight:700;
+    color:var(--navy); flex-shrink:0; margin-top:2px;
+  }
+  .header-text { flex:1; }
+  .header h1 {
+    font-family:'Source Serif 4',serif; font-size:25px; font-weight:700;
+    color:var(--white); letter-spacing:-0.3px; line-height:1.15;
+  }
+  .header h1 span { color:var(--accent); }
+  .header-sub { font-size:10px; color:#a8c4e0; margin-top:4px; font-weight:300; letter-spacing:0.2px; }
+  .header-meta { display:flex; flex-direction:column; align-items:flex-end; gap:5px; flex-shrink:0; }
+  .badge { background:var(--blue-mid); color:white; font-size:8.5px; font-weight:600; padding:2px 9px; border-radius:11px; letter-spacing:0.5px; text-transform:uppercase; }
+  .badge.sdg { background:var(--accent); color:var(--navy); }
+  .team-line { font-size:8.5px; color:#7a9dbf; text-align:right; margin-top:2px; }
+
+  /* ── TECH STRIP ── */
+  .tech-strip { background:var(--blue); padding:5px 28px; display:flex; align-items:center; gap:5px; flex-wrap:wrap; flex-shrink:0; }
+  .tech-label { font-size:8px; color:#a0c0e0; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; margin-right:4px; }
+  .tech-pill { background:rgba(255,255,255,0.12); color:#d8eaf8; font-family:'IBM Plex Mono',monospace; font-size:8px; padding:1.5px 7px; border-radius:3px; }
+
+  /* ── BODY GRID ── */
+  .body { display:grid; grid-template-columns:1fr 1fr 1fr; flex:1; padding:11px 14px 10px; gap:11px; }
+  .col  { display:flex; flex-direction:column; gap:11px; }
+
+  /* ── CARDS ── */
+  .card { background:var(--white); border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+  .card-header { background:var(--blue); padding:5px 10px; display:flex; align-items:center; gap:6px; }
+  .card-header.green  { background:var(--green); }
+  .card-header.navy   { background:var(--navy); }
+  .card-header.amber  { background:#7a3c00; }
+  .card-header.grey   { background:var(--grey); }
+  .card-header.teal   { background:#0a6070; }
+  .card-header.purple { background:#5a2080; }
+  .card-num { width:16px; height:16px; background:rgba(255,255,255,0.22); border-radius:50%; font-size:8.5px; font-weight:700; color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .card-title { font-size:10px; font-weight:600; color:white; letter-spacing:0.1px; text-transform:uppercase; }
+  .card-body { padding:8px 10px; }
+
+  p { margin-bottom:5px; font-size:10.2px; color:var(--text-secondary); }
+  p:last-child { margin-bottom:0; }
+  strong { color:var(--text); font-weight:600; }
+
+  /* ── SDG BOX ── */
+  .sdg-box { background:linear-gradient(135deg,#0d2340 0%,#1a4a8a 100%); border-radius:5px; padding:7px 9px; display:flex; gap:8px; align-items:flex-start; margin-bottom:6px; }
+  .sdg-icon { width:32px; height:32px; flex-shrink:0; background:var(--accent); border-radius:5px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--navy); }
+  .sdg-icon .sdg-num { font-family:'Source Serif 4',serif; font-size:13px; font-weight:700; line-height:1; }
+  .sdg-icon .sdg-word { font-size:5px; font-weight:700; text-transform:uppercase; }
+  .sdg-text { color:#c8dff0; font-size:9.2px; line-height:1.43; }
+  .sdg-text strong { color:white; display:block; margin-bottom:2px; font-size:9.5px; }
+
+  /* ── DIVIDER ── */
+  .div { height:1.5px; background:var(--blue-light); border-radius:2px; margin:5px 0 6px; }
+
+  /* ── STAT BOXES ── */
+  .stat-row { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:6px; }
+  .stat-box { background:var(--blue-pale); border:1px solid var(--border); border-radius:5px; padding:5px 7px; text-align:center; }
+  .stat-num { font-family:'Source Serif 4',serif; font-size:19px; font-weight:700; color:var(--blue); line-height:1; }
+  .stat-label { font-size:8px; color:var(--grey); margin-top:2px; font-weight:500; text-transform:uppercase; letter-spacing:0.3px; }
+
+  /* ── CHIPS ── */
+  .chip { display:inline-block; font-size:8px; font-weight:600; padding:1px 5px; border-radius:8px; letter-spacing:0.2px; white-space:nowrap; }
+  .chip.full    { background:var(--green-light); color:var(--green); }
+  .chip.partial { background:var(--amber-light); color:var(--amber); }
+  .chip.no      { background:var(--red-light);   color:var(--red); }
+
+  /* ── FEATURE TABLE (3-col with reason) ── */
+  .feat-table { width:100%; border-collapse:collapse; font-size:9px; }
+  .feat-table th { background:var(--navy); color:white; padding:4px 6px; text-align:left; font-size:8.5px; font-weight:600; }
+  .feat-table td { padding:3.5px 6px; border-bottom:1px solid #e0e8f4; vertical-align:top; }
+  .feat-table tr:last-child td { border-bottom:none; }
+  .feat-table tr:nth-child(even) td { background:var(--blue-pale); }
+  .feat-table .reason { color:var(--text-secondary); font-size:8.5px; line-height:1.38; }
+  .feat-table strong { font-size:8.5px; }
+
+  /* ── TEST TABLE ── */
+  .test-table { width:100%; border-collapse:collapse; font-size:9.2px; }
+  .test-table th { background:var(--navy); color:white; padding:4px 6px; text-align:left; font-weight:600; font-size:8.5px; }
+  .test-table td { padding:3.5px 6px; border-bottom:1px solid var(--blue-light); vertical-align:top; }
+  .test-table tr:last-child td { border-bottom:none; }
+  .test-table tr:nth-child(even) td { background:var(--blue-pale); }
+  .pass { color:var(--green); font-weight:600; }
+  .num-badge { display:inline-block; background:var(--blue); color:white; font-family:'IBM Plex Mono',monospace; font-size:8.5px; font-weight:600; padding:1px 5px; border-radius:3px; }
+  .num-badge.green { background:var(--green); }
+
+  /* ── ARCH PILLS ── */
+  .arch-layer { display:flex; align-items:center; gap:4px; margin-bottom:4px; }
+  .arch-label { font-size:8px; font-weight:600; text-transform:uppercase; letter-spacing:0.4px; color:var(--grey); width:54px; flex-shrink:0; }
+  .arch-pills { display:flex; gap:3px; flex-wrap:wrap; flex:1; }
+  .arch-pill { font-family:'IBM Plex Mono',monospace; font-size:8px; padding:1.5px 5px; border-radius:3px; border:1px solid; }
+  .ap-blue   { background:var(--blue-pale);   border-color:var(--blue-mid); color:var(--blue); }
+  .ap-green  { background:var(--green-light); border-color:var(--green);    color:var(--green); }
+  .ap-amber  { background:var(--amber-light); border-color:#c07000;         color:var(--amber); }
+
+  /* ── LIFECYCLE ── */
+  .lifecycle { display:flex; align-items:center; gap:3px; margin-bottom:6px; flex-wrap:wrap; }
+  .lc-state { font-size:8.5px; font-weight:600; padding:2px 6px; border-radius:3px; font-family:'IBM Plex Mono',monospace; }
+  .lc-pending  { background:#fff3cd; color:#7a5200; border:1px solid #f0c040; }
+  .lc-verified { background:var(--green-light); color:var(--green); border:1px solid #60c090; }
+  .lc-resolved { background:var(--blue-pale); color:var(--blue); border:1px solid var(--blue-mid); }
+  .lc-rejected { background:var(--red-light); color:var(--red); border:1px solid #e08080; }
+  .lc-expired  { background:var(--grey-light); color:var(--grey); border:1px solid #b0b8c8; }
+  .lc-arrow { color:#b0b8c8; font-size:9px; }
+
+  /* ── FINDINGS ── */
+  .finding { display:flex; gap:6px; margin-bottom:5px; align-items:flex-start; }
+  .finding-icon { width:14px; height:14px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:700; flex-shrink:0; margin-top:1px; }
+  .finding-icon.ok   { background:var(--green-light); color:var(--green); }
+  .finding-icon.warn { background:var(--amber-light); color:var(--amber); }
+  .finding-icon.bad  { background:var(--red-light);   color:var(--red); }
+  .finding-text { font-size:9.8px; color:var(--text-secondary); flex:1; }
+  .finding-text strong { color:var(--text); }
+
+  /* ── CALLOUT ── */
+  .callout { background:var(--accent-light); border-left:3px solid var(--accent); border-radius:0 4px 4px 0; padding:5px 8px; margin-bottom:6px; font-size:9.8px; color:var(--text); }
+  .callout.blue  { background:var(--blue-pale);   border-color:var(--blue-mid); }
+  .callout.green { background:var(--green-light);  border-color:var(--green); }
+  .callout.amber { background:var(--amber-light);  border-color:var(--amber); }
+
+  /* ── TECHNICAL DISCOVERY BOXES ── */
+  .disc-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-bottom:6px; }
+  .disc-box { background:var(--navy); border-radius:4px; padding:5px 8px; }
+  .disc-box .disc-label { color:var(--accent); font-size:8.5px; font-weight:700; margin-bottom:2px; display:flex; align-items:center; gap:4px; }
+  .disc-box .disc-label code { background:rgba(255,255,255,0.12); color:#d8eaf8; font-size:7.5px; padding:1px 4px; border-radius:2px; font-family:'IBM Plex Mono',monospace; }
+  .disc-box .disc-text { color:#c8dff0; font-size:8.5px; line-height:1.42; }
+
+  /* ── PROCESS STEPS ── */
+  .proc-step { display:flex; gap:6px; margin-bottom:5px; align-items:flex-start; }
+  .proc-icon { width:16px; height:16px; flex-shrink:0; border-radius:50%; font-size:8px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .proc-icon.blue   { background:var(--blue-mid); color:white; }
+  .proc-icon.amber  { background:var(--amber); color:white; }
+  .proc-icon.red    { background:var(--red); color:white; }
+  .proc-icon.green  { background:var(--green); color:white; }
+  .proc-icon.grey   { background:var(--grey); color:white; }
+  .proc-text { font-size:9.8px; color:var(--text-secondary); flex:1; line-height:1.4; }
+  .proc-text strong { color:var(--text); }
+
+  /* ── PROTO 2 GRID ── */
+  .p2-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-bottom:5px; }
+  .p2-box { background:var(--navy); border-radius:4px; padding:5px 7px; }
+  .p2-box .p2-label { color:#a8d4f8; font-size:8px; font-weight:700; margin-bottom:2px; text-transform:uppercase; letter-spacing:0.3px; }
+  .p2-box .p2-text  { color:#c8dff0; font-size:8.5px; line-height:1.38; }
+
+  /* ── MINI ROLE GRID ── */
+  .mini-role-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; margin-bottom:6px; }
+  .role-chip { background:var(--blue-pale); border:1px solid var(--border); border-radius:4px; padding:3px 6px; font-size:9px; color:var(--blue); font-weight:500; }
+  .role-chip .role-id { font-family:'IBM Plex Mono',monospace; font-size:7.5px; color:var(--grey); display:block; }
+
+  /* ── FORMULA BOX ── */
+  .formula-box { background:var(--navy); border-radius:5px; padding:7px 9px; text-align:center; margin-bottom:6px; }
+  .formula-text { font-family:'IBM Plex Mono',monospace; font-size:9px; color:#a8d4f8; line-height:1.7; }
+  .formula-text span { color:var(--accent); font-weight:600; }
+
+  /* ── MOCKUP SCREENS ── */
+  .mock-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px; }
+  .mock-screen { background:#0d1b2a; border-radius:5px; overflow:hidden; border:1px solid #1e3050; }
+  .mock-topbar { background:#111e2d; padding:2px 6px 3px; font-size:7px; color:#7a9dbf; font-family:'IBM Plex Mono',monospace; border-bottom:1px solid #1e3050; display:flex; align-items:center; gap:4px; }
+  .mock-topbar::before { content:'● ● ●'; font-size:4.5px; color:#2a4060; letter-spacing:2px; }
+
+  /* ── FOOTER ── */
+  .footer { background:var(--navy); padding:6px 28px; display:flex; align-items:center; justify-content:space-between; flex-shrink:0; }
+  .footer-left   { font-size:8px; color:#6a8aaa; }
+  .footer-right  { font-size:8px; color:#6a8aaa; text-align:right; }
+  .footer-center { font-size:8.5px; color:#a0c0d8; font-weight:600; letter-spacing:0.3px; }
+
+  code { font-family:'IBM Plex Mono',monospace; font-size:8.5px; background:#edf4fc; padding:1px 4px; border-radius:3px; }
+  .amber-label { font-weight:600; color:var(--amber); font-size:9.5px; }
+
+  /* ── DARK-BOX CODE OVERRIDES ── */
+  /* Code inside dark navy disc-boxes must use light-on-dark styling, not the global light background */
+  .disc-box .disc-text code,
+  .disc-box .disc-label code {
+    background:rgba(255,255,255,0.14);
+    color:#d8eaf8;
+    font-size:8px;
+    padding:1.5px 4px;
+    border-radius:2px;
+    word-break:break-all;
+  }
+  .disc-box .disc-text strong { color:#ffffff; }
+  .disc-box .disc-text { word-break:break-word; }
+</style>
+</head>
+<body>
+<div class="poster">
+
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div class="header-logo">AP</div>
+  <div class="header-text">
+    <h1><span>AccessPath</span> — Crowdsourced Accessibility Mapping &amp; Route-Planning System</h1>
+    <div class="header-sub">Community Reporting · AI-Assisted Classification · Confidence Scoring · Moderation Workflows · Accessibility-Aware Routing &nbsp;·&nbsp; <strong style="color:#d4a840">SDG 11 — Sustainable Cities and Communities</strong> &nbsp;·&nbsp; Milestone 4 Prototype 1 Evaluation Poster</div>
+  </div>
+  <div class="header-meta">
+    <span class="badge sdg">SDG 11.2</span>
+    <span class="badge">University of Birmingham · 2025/26</span>
+    <div class="team-line">Program Pioneers &nbsp;·&nbsp; March 2026<br>Alomairi · Alomari · Esmaeilijhah · Karbasian · Raji · Samie Khalajabadi</div>
+  </div>
+</div>
+
+<!-- ══ TECH STRIP ══ -->
+<div class="tech-strip">
+  <span class="tech-label">Stack</span>
+  <span class="tech-pill">React 19 + TypeScript</span>
+  <span class="tech-pill">Leaflet / OpenStreetMap</span>
+  <span class="tech-pill">Spring Boot 3.2 / Java 17</span>
+  <span class="tech-pill">PostgreSQL 15 + PostGIS 3.3</span>
+  <span class="tech-pill">Spring Security + JWT/RBAC</span>
+  <span class="tech-pill">Liquibase (10 changesets)</span>
+  <span class="tech-pill">JUnit 5 + Mockito</span>
+  <span class="tech-pill">Python integration runner</span>
+  <span class="tech-pill">Axios · React Router · Vite 7</span>
+</div>
+
+<!-- ══ BODY ══ -->
+<div class="body">
+
+<!-- ════ COLUMN 1 ════ -->
+<div class="col">
+
+  <!-- 1 · Introduction & SDG 11 -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-num">1</div>
+      <div class="card-title">Introduction &amp; SDG 11 Alignment</div>
+    </div>
+    <div class="card-body">
+      <div class="sdg-box">
+        <div class="sdg-icon"><div class="sdg-num">11</div><div class="sdg-word">SDG</div></div>
+        <div class="sdg-text">
+          <strong>SDG 11.2 — Safe, Accessible &amp; Sustainable Transport for All</strong>
+          Conventional navigation tools optimise for time/distance and ignore real-time accessibility barriers. AccessPath targets the missing <em>trust layer</em>: community-verified, time-sensitive data for wheelchair users, low-vision pedestrians, elderly individuals, and caregivers.
+        </div>
+      </div>
+      <p>Urban infrastructure presents persistent barriers — broken ramps, blocked crossings, unlit paths, no-shade corridors — yet <strong>no real-time, community-driven tool</strong> exists to surface them reliably. AccessPath closes this gap with a crowdsourced reporting pipeline, community voting, moderator review, and confidence-scored route guidance.</p>
+      <div class="div"></div>
+      <p><strong>Core innovation — "the trust loop":</strong> raw community submissions pass through duplicate detection, AI-assisted classification, community voting, and moderation to become <em>verified, time-sensitive</em> barrier data that meaningfully influences route suitability scores shown to navigators.</p>
+      <div class="mini-role-grid">
+        <div class="role-chip"><div class="role-id">UG-1 / P1–P3</div>Accessibility Navigator</div>
+        <div class="role-chip"><div class="role-id">UG-2 / P4–P5</div>Community Reporter</div>
+        <div class="role-chip"><div class="role-id">UG-3 / P6</div>Moderator / Reviewer</div>
+        <div class="role-chip"><div class="role-id">UG-4 / P7</div>Urban Planner (read-only)</div>
+      </div>
+      <p style="font-size:9px;color:var(--grey)">7 personas · 14 scenarios · 28 user stories · 24 features across Milestones 1–3. SDG 11 contribution: inclusive access to transport (11.2) and safe, accessible public spaces.</p>
+    </div>
+  </div>
+
+  <!-- 2 · M1 Problem Evaluation -->
+  <div class="card">
+    <div class="card-header teal">
+      <div class="card-num">2</div>
+      <div class="card-title">M1 Evaluation — Problem &amp; Prototype Fit</div>
+    </div>
+    <div class="card-body">
+      <div class="callout green" style="font-size:9px">
+        <strong>M1 problem:</strong> urban navigation tools fail accessibility needs — no real-time barrier data, no community verification, no trust mechanism to distinguish current from stale hazards.
+      </div>
+      <div class="finding">
+        <div class="finding-icon ok">✓</div>
+        <div class="finding-text"><strong>Trust loop works end-to-end.</strong> Reports flow: submit → duplicate-check → AI classify → community vote → moderate → confidence-weighted route suitability. All stages are functional and pass 312 tests. The core M1 value proposition is delivered.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-icon ok">✓</div>
+        <div class="finding-text"><strong>Live barrier warnings on routes.</strong> RoutingService queries verified reports within 50 m of the route origin. Barrier data is real and current — even though path geometry is a hardcoded demo stub (full graph routing was out of sprint scope).</div>
+      </div>
+      <div class="finding">
+        <div class="finding-icon warn">⚠</div>
+        <div class="finding-text"><strong>Routing geometry is not real.</strong> Full graph-based routing (OSRM / OpenRouteService) requires substantial integration effort beyond the 3-week window. Path geometry is hardcoded; suitability scores and confidence warnings are computed from live data. Users see valid barrier warnings on a simulated path.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-icon warn">⚠</div>
+        <div class="finding-text"><strong>"AI" classification scoped down.</strong> Delivered as deterministic keyword-bag matching (45 terms/category, 3 severity tiers). Zero external dependency; fully auditable and reproducible. Not machine learning, but it honestly fulfils the classification role within prototype constraints.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-icon bad">✕</div>
+        <div class="finding-text"><strong>GPS input and mobile layout absent.</strong> Reporters must manually type coordinates; the layout is desktop-first. Both directly contradict the M1 goal of improving field mobility for accessibility-constrained users.</div>
+      </div>
+      <div class="div"></div>
+      <p style="font-size:9px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;">User Group &amp; Persona Delivery — M1 → M4</p>
+      <table class="feat-table">
+        <thead>
+          <tr>
+            <th style="width:22%">User Group</th>
+            <th style="width:18%">Persona</th>
+            <th style="width:52px">P1 Status</th>
+            <th>Evidence &amp; Impact</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>UG-3</strong> Moderator</td>
+            <td>P6</td>
+            <td><span class="chip full">Served ✓</span></td>
+            <td class="reason">All 4 triage actions (Verify/Reject/Resolve/Expire) implemented. <code>@PreAuthorize</code> RBAC enforced. Confidence refreshed after every action. Best-served group in P1 — operates at a desktop, no field constraints.</td>
+          </tr>
+          <tr>
+            <td><strong>UG-2</strong> Reporter</td>
+            <td>P4–P5</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason">Registration, login, report submission, AI classification, and duplicate detection all work. <strong>Critical gap:</strong> requires desktop browser and manual lat/lng entry — reporters (P3 Khalid) operating in the field on a mobile device cannot realistically submit a report.</td>
+          </tr>
+          <tr>
+            <td><strong>UG-1</strong> Navigator</td>
+            <td>P1–P3</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason">Map, category filter, confidence-weighted route suitability, and live barrier warnings all delivered. <strong>Critical gap:</strong> route planning requires 4 raw coordinate inputs — no GPS, no address search. Navigators cannot practically use the route planner in the field.</td>
+          </tr>
+          <tr>
+            <td><strong>UG-4</strong> Urban Planner</td>
+            <td>P7</td>
+            <td><span class="chip no">Not served</span></td>
+            <td class="reason">No analytics dashboard, no aggregate API endpoints, no heatmap or time-series views. UG-4's entire value proposition (evidence-based infrastructure decisions for SDG 11) is undemonstrable in P1.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:8.5px;color:var(--red);font-weight:600;margin-top:4px;margin-bottom:4px;">⚠ The user groups with the highest accessibility need (UG-1, UG-2 — mobility-impaired users in the field) are the least served by Prototype 1. The group requiring the least accessibility accommodation (UG-3 — moderators at a desk) is fully served. This directly contradicts the M1 mission and is the primary driver for Prototype 2 scope.</p>
+      <div class="callout" style="background:#fde8e8;border-color:var(--red);font-size:9px;margin-top:6px;margin-bottom:0">
+        <strong>⚠ Critical mission–delivery contradiction:</strong> AccessPath — built for users with mobility constraints — is only usable on a desktop browser with manually typed coordinates. The users who most need real-time barrier information (wheelchair users reporting hazards in the field) are the <em>least</em> able to use Prototype 1. This is the sharpest gap between the M1 problem statement and the M4 deliverable, and the primary driver for Prototype 2 requirements.
+      </div>
+      <div class="div"></div>
+      <p style="font-size:9px"><strong>Second prototype:</strong> real graph routing (OSRM + PostGIS spatial queries), GPS/click-to-pin coordinate capture, mobile-first PWA layout, and ML text classifier to replace keyword matching.</p>
+    </div>
+  </div>
+
+  <!-- 3 · M2 Requirements Evaluation -->
+  <div class="card">
+    <div class="card-header purple">
+      <div class="card-num">3</div>
+      <div class="card-title">M2 Evaluation — Requirements Achieved</div>
+    </div>
+    <div class="card-body">
+      <p style="font-size:9px;margin-bottom:5px"><strong>Evaluation approach:</strong> each feature graded as <span class="chip full">Full ✓</span> (working end-to-end in codebase), <span class="chip partial">Partial</span> (core logic present, scope reduced from M2 spec), or <span class="chip no">Not done</span> (absent from M4 codebase). Grading is evidence-based — tied to specific service classes, methods, and DB constraints in the committed code.</p>
+      <table class="feat-table">
+        <thead><tr><th style="width:24%">Feature</th><th style="width:50px">Status</th><th>Codebase evidence &amp; impact</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>F-3</strong> Route warnings + confidence cues</td>
+            <td><span class="chip full">Full ✓</span></td>
+            <td class="reason"><code>RoutingService.getWarningsForRoute()</code> calls <code>reportRepository.findVerifiedNearby(lat,lng,50.0)</code> — live PostGIS data. <code>ConfidenceService</code>: VERIFIED_BONUS=0.4f + freshness decay (&lt;24h→1.0, &lt;72h→0.7, &lt;168h→0.4, else 0.1). Score [0,1] shown per route card.</td>
+          </tr>
+          <tr>
+            <td><strong>F-8</strong> Report submission (geotag + timestamp)</td>
+            <td><span class="chip full">Full ✓</span></td>
+            <td class="reason"><code>ReportService</code> persists <code>GEOGRAPHY(Point,4326)</code> geotag + <code>createdAt</code> + <code>expiresAt</code>. Custom <code>@ValidCoordinates</code> annotation validates lat/lng range — beyond M3 spec; improves data integrity under edge-case input.</td>
+          </tr>
+          <tr>
+            <td><strong>F-10</strong> Duplicate-aware reporting</td>
+            <td><span class="chip full">Full ✓</span></td>
+            <td class="reason">Backend: <code>ST_DWithin(location,point,50.0)</code> — throws <code>IllegalStateException</code> if duplicate within 50 m. Frontend: |ΔLat|&lt;0.003°≈333 m non-blocking modal. Asymmetric thresholds intentional — layered defence.</td>
+          </tr>
+          <tr>
+            <td><strong>F-12</strong> Confirm / dispute voting (1 per user)</td>
+            <td><span class="chip full">Full ✓</span></td>
+            <td class="reason"><code>UNIQUE(report_id, user_id)</code> DB constraint enforces one vote per user. Every vote calls <code>confidenceService.refreshCues(UUID)</code> — score recomputed immediately. Votes contribute up to MAX_VOTE_CONTRIBUTION=0.4f of confidence score.</td>
+          </tr>
+          <tr>
+            <td><strong>F-14</strong> Moderation queue + 4 triage actions</td>
+            <td><span class="chip full">Full ✓</span></td>
+            <td class="reason">Verify / Reject / Resolve / Expire all implemented. Each action triggers <code>confidenceService.refreshCues()</code>. <code>@PreAuthorize("hasRole('MODERATOR')")</code> enforces RBAC at controller level. 17 unit tests on ConfidenceService, all PASS.</td>
+          </tr>
+          <tr>
+            <td><strong>F-16</strong> Report lifecycle (RESOLVED / EXPIRED)</td>
+            <td><span class="chip full">Full ✓</span></td>
+            <td class="reason"><code>ReportExpiryScheduler @Scheduled(fixedRate=3600000)</code> marks PENDING/VERIFIED → EXPIRED when <code>expiresAt &lt; Instant.now()</code>. Also runs on application startup. 9 unit tests, 0 fail. Keeps live barrier data fresh — directly supports SDG 11.2.</td>
+          </tr>
+          <tr>
+            <td><strong>F-1</strong> Preference-based routing constraints</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason"><code>calculateSuitability()</code> adds +0.2 bonus when avoidStairs=true and route is accessible type. Logic is sound, but paths are hardcoded stubs — preference filtering works numerically but not over a real road graph. Impact: suitability comparison is valid; actual path avoidance is not.</td>
+          </tr>
+          <tr>
+            <td><strong>F-2</strong> Multi-option route planning</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason"><code>getDemoRoutes()</code> returns 3 hardcoded <code>RouteOption</code>s (accessible 12 min/80%, scenic 12 min, shorter 8 min/50%). Geometry: arithmetic midpoint waypoint. Live confidence warnings on each option — real data, simulated path.</td>
+          </tr>
+          <tr>
+            <td><strong>F-4</strong> Step-by-step directions</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason">Turn-by-turn strings are hardcoded per demo route ("Head north on Main St…"). Not derived from graph traversal. Sufficient to demonstrate the UI direction-display flow; cannot be used for real navigation in the field.</td>
+          </tr>
+          <tr>
+            <td><strong>F-21</strong> Keyboard accessibility</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason">Focus styles extended post-review: <code>:focus-visible</code> now applies to all focusable elements (inputs, selects, links) — not just buttons. Leaflet map wrapper receives a visible amber (<code>#FBBF24</code>) focus ring via <code>.map-wrapper:has(&gt; .leaflet-container:focus-visible)</code>. Tab-order overlap at 125–150% DPI scaling remains unresolved. Partial improvement merged before submission.</td>
+          </tr>
+          <tr>
+            <td>Analytics / heatmap dashboard</td>
+            <td><span class="chip no">Not done</span></td>
+            <td class="reason">Explicitly deferred in M3. UG-4 (Urban Planner) persona value undemonstrable — no aggregate API endpoints exist in the M4 codebase. Gap limits evidence-based infrastructure use cases for SDG 11.</td>
+          </tr>
+          <tr>
+            <td>GPS input + click-to-pin</td>
+            <td><span class="chip no">Not done</span></td>
+            <td class="reason">Never scoped in M3 — the most significant field-usability gap. Manual lat/lon text entry is inaccessible to non-technical reporters using mobile in the field. Directly contradicts the P3 Khalid persona goal of effortless barrier reporting.</td>
+          </tr>
+          <tr>
+            <td>Image attachments on reports</td>
+            <td><span class="chip no">Not done</span></td>
+            <td class="reason">No file upload endpoint or storage integration in M4. Moderators rely on text descriptions alone — increases false-positive triage risk and reduces community trust in the reported data.</td>
+          </tr>
+          <tr>
+            <td>Mobile-responsive layout</td>
+            <td><span class="chip no">Not done</span></td>
+            <td class="reason">Desktop-first CSS throughout. Leaflet click-detection misaligns at 125%+ DPI scaling. Directly contradicts the M1 problem goal of improving field mobility for accessibility-constrained users carrying a mobile device.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="div"></div>
+      <p style="font-size:9px"><strong>Synthesis:</strong> The trust loop (F-3, F-8, F-10, F-12, F-14, F-16) — AccessPath's core differentiator — was delivered in full with <strong>79 unit tests across six service classes</strong> (VerificationService 12, ConfidenceService 17, ModerationService 15, ReportService 12, RoutingService 14, Scheduler 9), all passing. Partial deliveries (F-1, F-2, F-4) are honest to the M3 stub constraint: suitability scoring and live barrier warnings work correctly on simulated paths. The critical unmet gap is <em>field usability</em>: absent GPS input and desktop-only layout mean reporter and navigator personas cannot realistically use the prototype in situ — the primary focus for Prototype 2. A late accessibility fix — extending <code>:focus-visible</code> to all interactive elements and adding a Leaflet map focus ring — was merged before submission, partially addressing F-21.</p>
+    </div>
+  </div>
+
+</div><!-- /col 1 -->
+
+
+<!-- ════ COLUMN 2 ════ -->
+<div class="col">
+
+  <!-- 4 · Prototype Screens -->
+  <div class="card">
+    <div class="card-header green">
+      <div class="card-num">4</div>
+      <div class="card-title">Prototype 1 Screens — Key UI Flows</div>
+    </div>
+    <div class="card-body">
+      <div class="mock-grid">
+
+        <!-- Map View -->
+        <div class="mock-screen">
+          <div class="mock-topbar">AccessPath · Map View (Leaflet + OpenStreetMap)</div>
+          <div style="position:relative;height:104px;background:#182030;overflow:hidden;">
+            <div style="position:absolute;left:0;right:0;top:32%;height:1px;background:#1e2e40;"></div>
+            <div style="position:absolute;left:0;right:0;top:62%;height:1px;background:#1e2e40;"></div>
+            <div style="position:absolute;top:0;bottom:0;left:38%;width:1px;background:#1e2e40;"></div>
+            <div style="position:absolute;top:0;bottom:0;left:66%;width:1px;background:#1e2e40;"></div>
+            <div style="position:absolute;left:31%;top:24%;width:11px;height:11px;border-radius:50%;background:#e05050;border:2px solid white;"></div>
+            <div style="position:absolute;left:41%;top:30%;width:11px;height:11px;border-radius:50%;background:#e08020;border:2px solid white;"></div>
+            <div style="position:absolute;left:47%;top:37%;width:11px;height:11px;border-radius:50%;background:#c060c0;border:2px solid white;"></div>
+            <div style="position:absolute;left:53%;top:53%;width:11px;height:11px;border-radius:50%;background:#e0c020;border:2px solid white;"></div>
+            <div style="position:absolute;left:58%;top:64%;width:11px;height:11px;border-radius:50%;background:#3070e0;border:2px solid white;"></div>
+            <div style="position:absolute;top:4px;left:4px;right:4px;display:flex;gap:3px;flex-wrap:wrap;">
+              <span style="background:#2561b0;color:white;font-size:6.5px;padding:1px 5px;border-radius:7px;font-weight:700;">ALL</span>
+              <span style="background:#1e2e40;color:#7a9dbf;font-size:6px;padding:1px 5px;border-radius:7px;">Step-free</span>
+              <span style="background:#1e2e40;color:#7a9dbf;font-size:6px;padding:1px 5px;border-radius:7px;">Hazard</span>
+              <span style="background:#1e2e40;color:#7a9dbf;font-size:6px;padding:1px 5px;border-radius:7px;">Obstruction</span>
+            </div>
+            <div style="position:absolute;bottom:4px;left:4px;background:rgba(13,27,42,0.9);padding:3px 5px;border-radius:3px;border:1px solid #2a3f5a;">
+              <div style="font-size:6px;color:#e8a020;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;">ACCESSPATH</div>
+              <div style="font-size:9.5px;color:white;font-weight:700;line-height:1.1;">5 <span style="font-size:6.5px;color:#7a9dbf;font-weight:400;">reports visible</span></div>
+            </div>
+          </div>
+          <div style="padding:4px 5px;border-top:1px solid #1e3050;">
+            <div style="font-size:6.5px;color:#7a9dbf;font-weight:700;margin-bottom:2px;text-transform:uppercase;">Reported Issues</div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:1.5px;"><span style="font-size:7px;color:#c8dff0;">Heat / no shade</span><span style="font-size:6px;color:#e0a020;font-weight:700;background:#2a1800;padding:1px 3px;border-radius:2px;">PENDING</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:1.5px;"><span style="font-size:7px;color:#c8dff0;">Step-free issue</span><span style="font-size:6px;color:#1a9a5a;font-weight:700;background:#0a2a1a;padding:1px 3px;border-radius:2px;">VERIFIED</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="font-size:7px;color:#c8dff0;">Surface hazard</span><span style="font-size:6px;color:#5a6a8a;font-weight:700;background:#1a2030;padding:1px 3px;border-radius:2px;">RESOLVED</span></div>
+          </div>
+        </div>
+
+        <!-- Submit Report + AI -->
+        <div class="mock-screen">
+          <div class="mock-topbar">Submit Report — AI Classification</div>
+          <div style="padding:5px 6px;">
+            <div style="display:flex;gap:4px;margin-bottom:3px;">
+              <div style="flex:1;background:#1a2d45;border:1px solid #2a3f5a;border-radius:3px;padding:2.5px 5px;font-size:7px;color:#c8dff0;">Surface hazard ▾</div>
+              <div style="width:52px;background:#1a2d45;border:2px solid #2561b0;border-radius:3px;padding:2.5px 5px;font-size:7px;color:white;font-weight:600;">High ▾</div>
+            </div>
+            <div style="background:#1a2d45;border:1px solid #2a3f5a;border-radius:3px;padding:3px 5px;font-size:7px;color:#c8dff0;margin-bottom:3px;min-height:20px;">Broken ramp near entrance</div>
+            <div style="display:flex;gap:3px;margin-bottom:3px;">
+              <div style="flex:1;"><div style="font-size:6px;color:#7a9dbf;margin-bottom:1px;">Latitude</div><div style="background:#1a2d45;border:1px solid #2a3f5a;border-radius:2px;padding:2px 4px;font-size:7px;color:#c8dff0;">25.2150</div></div>
+              <div style="flex:1;"><div style="font-size:6px;color:#7a9dbf;margin-bottom:1px;">Longitude</div><div style="background:#1a2d45;border:1px solid #2a3f5a;border-radius:2px;padding:2px 4px;font-size:7px;color:#c8dff0;">55.2800</div></div>
+            </div>
+            <div style="background:#0a1e30;border:1px solid #2a4060;border-radius:3px;padding:3px 5px;margin-bottom:3px;">
+              <div style="font-size:6.5px;color:#7a9dbf;margin-bottom:1px;">AI suggested:</div>
+              <div style="display:flex;align-items:center;gap:3px;"><span style="background:#1a3a5a;color:#a0d0f8;font-size:6.5px;padding:1px 4px;border-radius:2px;font-weight:700;">SURFACE_HAZARD</span><span style="background:#1a3a5a;color:#60b8ff;font-size:6.5px;padding:1px 4px;border-radius:2px;font-weight:700;">HIGH ✓</span></div>
+              <div style="font-size:6.5px;color:#1a9a5a;font-weight:600;margin-top:1px;">High confidence</div>
+            </div>
+            <div style="display:flex;gap:3px;"><div style="flex:1;background:#18a050;border-radius:2px;padding:3px;font-size:7px;color:white;font-weight:700;text-align:center;">Confirm &amp; Submit</div><div style="background:#1a2d45;border:1px solid #2a3f5a;border-radius:2px;padding:3px 6px;font-size:7px;color:#7a9dbf;">Edit</div></div>
+          </div>
+        </div>
+
+        <!-- Route Planner -->
+        <div class="mock-screen">
+          <div class="mock-topbar">Route Planner — 3 Demo Routes + Live Warnings</div>
+          <div style="padding:5px 6px;">
+            <div style="background:#0f2a1a;border:1px solid #1a4a2a;border-radius:3px;padding:3.5px 5px;margin-bottom:2.5px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:1.5px;"><span style="font-size:7.5px;color:#c8e8d8;font-weight:700;">Accessible Route</span><span style="font-size:6.5px;color:#7a9dbf;">~12 min · <span style="color:#1a9a5a;font-weight:700;">80%</span></span></div>
+              <div style="font-size:6.5px;color:#8ab8a8;border-top:1px solid #1a4a2a;padding-top:1.5px;">↑ Head north on Main St · ← Accessible Path · → 200m</div>
+            </div>
+            <div style="background:#141e2e;border:1px solid #2a3f5a;border-radius:3px;padding:3.5px 5px;margin-bottom:2.5px;opacity:0.9;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:1px;"><span style="font-size:7.5px;color:#c8dff0;font-weight:600;">Scenic Route</span><span style="font-size:6.5px;color:#7a9dbf;">~12 min · <span style="color:#e0a020;font-weight:700;">80%</span></span></div>
+              <div style="font-size:6.5px;color:#7a9dbf;">↓ South through park · Follow accessible path</div>
+            </div>
+            <div style="background:#141e2e;border:1px solid #2a3f5a;border-radius:3px;padding:3.5px 5px;opacity:0.75;">
+              <div style="display:flex;justify-content:space-between;"><span style="font-size:7.5px;color:#c8dff0;font-weight:600;">Shorter Route</span><span style="font-size:6.5px;color:#7a9dbf;">~8 min · <span style="color:#e05050;font-weight:700;">50%</span></span></div>
+              <div style="font-size:6.5px;color:#7a9dbf;">→ East on High St · Right at junction</div>
+            </div>
+            <div style="display:flex;gap:3px;margin-top:3.5px;"><div style="background:#1a2d45;border:1px solid #2a3f5a;border-radius:2px;padding:2px 4px;font-size:6px;color:#7a9dbf;">☐ Avoid stairs</div><div style="background:#1a2d45;border:1px solid #2a3f5a;border-radius:2px;padding:2px 4px;font-size:6px;color:#7a9dbf;">☐ Avoid inclines</div><div style="background:#1a2d45;border:1px solid #2a3f5a;border-radius:2px;padding:2px 4px;font-size:6px;color:#7a9dbf;">☐ Avoid unsafe</div></div>
+          </div>
+        </div>
+
+        <!-- Moderation Queue -->
+        <div class="mock-screen">
+          <div class="mock-topbar">Moderation Queue — MODERATOR role</div>
+          <div style="padding:5px 6px;">
+            <div style="background:#141e2e;border:1px solid #2a3f5a;border-radius:3px;padding:3.5px 5px;margin-bottom:2.5px;">
+              <div style="display:flex;gap:2.5px;margin-bottom:1.5px;"><span style="background:#1a3a5a;color:#a0c8e8;font-size:6px;padding:1px 3px;border-radius:2px;font-weight:700;">SURFACE_HAZARD</span><span style="background:#3a1010;color:#e08080;font-size:6px;padding:1px 3px;border-radius:2px;font-weight:700;">HIGH</span></div>
+              <div style="font-size:7px;color:#c8dff0;margin-bottom:1.5px;">Broken ramp near entrance</div>
+              <div style="display:flex;gap:2.5px;"><span style="background:#18a050;color:white;font-size:6px;padding:1.5px 4px;border-radius:2px;font-weight:700;">Verify</span><span style="background:#b02020;color:white;font-size:6px;padding:1.5px 4px;border-radius:2px;font-weight:700;">Reject</span><span style="background:#2561b0;color:white;font-size:6px;padding:1.5px 4px;border-radius:2px;font-weight:700;">Resolve</span><span style="background:#2a3550;color:#7a9dbf;font-size:6px;padding:1.5px 4px;border-radius:2px;">Expire</span></div>
+            </div>
+            <div style="background:#141e2e;border:1px solid #2a3f5a;border-radius:3px;padding:3.5px 5px;margin-bottom:2.5px;">
+              <div style="display:flex;gap:2.5px;margin-bottom:1.5px;"><span style="background:#1a3a5a;color:#a0c8e8;font-size:6px;padding:1px 3px;border-radius:2px;font-weight:700;">STEP_FREE_ISSUE</span><span style="background:#3a1010;color:#e08080;font-size:6px;padding:1px 3px;border-radius:2px;font-weight:700;">HIGH</span></div>
+              <div style="font-size:7px;color:#c8dff0;margin-bottom:1.5px;">Elevator broken</div>
+              <div style="display:flex;gap:2.5px;"><span style="background:#18a050;color:white;font-size:6px;padding:1.5px 4px;border-radius:2px;font-weight:700;">Verify</span><span style="background:#b02020;color:white;font-size:6px;padding:1.5px 4px;border-radius:2px;font-weight:700;">Reject</span><span style="background:#2561b0;color:white;font-size:6px;padding:1.5px 4px;border-radius:2px;font-weight:700;">Resolve</span></div>
+            </div>
+            <div style="background:#141e2e;border:1px solid #1e3050;border-radius:3px;padding:3px 5px;opacity:0.6;">
+              <div style="display:flex;justify-content:space-between;"><span style="font-size:6.5px;color:#7a9dbf;">OBSTRUCTION · LOW</span><span style="font-size:6px;color:#5a6a8a;font-weight:700;">RESOLVED</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /mock-grid -->
+      <p style="font-size:8.5px;color:var(--grey);text-align:center;margin-top:2px">Prototype 1 screens (L→R, T→B): Map + report filter (dark Leaflet UI) · Submit Report with AI classification · Route Planner with suitability scores · Moderation queue with triage actions</p>
+    </div>
+  </div>
+
+  <!-- 5 · M3 Design Applied + Technical Discoveries + M3 Evaluation -->
+  <div class="card">
+    <div class="card-header amber">
+      <div class="card-num">5</div>
+      <div class="card-title">M3 Design → M4 Implementation: Applied, Adapted &amp; Evaluated</div>
+    </div>
+    <div class="card-body">
+
+      <p><strong>Architecture faithfully implemented.</strong> The layered client–server model from M3 (React/Leaflet → Spring Boot REST → PostgreSQL/PostGIS) was realised as designed. Controllers → Services → Repositories separation enabled clean unit-testability — 7 service classes covered by JUnit 5 + Mockito. <strong>10 Liquibase changesets</strong> (001 = CREATE EXTENSION postgis → 010 = test account password fix) version-control every schema change. JWT + BCrypt enforced at both Spring Security filter level <em>and</em> <code>@PreAuthorize</code> annotations — dual-layer RBAC. <strong>Vite 7</strong> was chosen as the frontend build tool: native ESM-based HMR gives near-instant hot reloads, critical when iterating on a complex Leaflet map UI. Vite's dev server defaults to port <code>:5173</code> (the M3 spec had assumed <code>:3000</code> from Create React App); the backend Spring Boot API runs on <code>:8080</code>. This port mismatch was the direct root cause of the CORS discovery documented below. Plain React <code>useState</code> and CSS handle all forms and styling — no component library was installed.</p>
+
+      <div class="arch-layer">
+        <span class="arch-label">Frontend</span>
+        <div class="arch-pills"><span class="arch-pill ap-blue">React 19</span><span class="arch-pill ap-blue">TypeScript</span><span class="arch-pill ap-blue">Leaflet</span><span class="arch-pill ap-blue">Axios</span><span class="arch-pill ap-blue">React Router</span><span class="arch-pill ap-blue">Vite 7</span></div>
+      </div>
+      <div class="arch-layer">
+        <span class="arch-label">Backend</span>
+        <div class="arch-pills"><span class="arch-pill ap-green">Spring Boot 3.2</span><span class="arch-pill ap-green">Java 17</span><span class="arch-pill ap-green">JWT/RBAC</span></div>
+      </div>
+      <div class="arch-layer" style="margin-bottom:6px">
+        <span class="arch-label">Database</span>
+        <div class="arch-pills"><span class="arch-pill ap-amber">PostgreSQL 15</span><span class="arch-pill ap-amber">PostGIS 3.3</span><span class="arch-pill ap-amber">Liquibase</span></div>
+      </div>
+
+      <div class="div"></div>
+      <p style="font-size:9px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;">Key Deviations from M3 Plan</p>
+
+      <p><span class="amber-label">⚠ Classification redesigned:</span> M3 described "AI core / keyword scoring." Delivered as <code>ClassificationService</code> — a static <code>Map&lt;String,List&lt;String&gt;&gt;</code> with 5 categories (STEP_FREE_ISSUE, SURFACE_HAZARD, OBSTRUCTION, LIGHTING_ISSUE, HEAT_NO_SHADE) × ~9 keywords each (45 terms total). Word-boundary regex avoids partial matches. <code>suggestCategory()</code> and <code>suggestSeverity()</code> (HIGH / MEDIUM / LOW keyword tiers) pre-fill the form. <code>getConfidenceFlag()</code> returns true if ≥2 total matches — triggers "High confidence" UI banner. Zero ML, zero external API. 16 unit tests, all PASS.</p>
+      <p><span class="amber-label">⚠ Routing geometry is a stub:</span> <code>getDemoRoutes()</code> returns 3 hardcoded <code>RouteOption</code>s. Waypoints: arithmetic midpoint. ETAs: accessible=12 min, shorter=8 min (hardcoded). <code>calculateSuitability()</code>: accessible starts 0.8, non-accessible 0.5; −0.1 per warning; +0.2 if avoidStairs flag set. <strong>Warnings are live:</strong> <code>getWarningsForRoute()</code> calls <code>reportRepository.findVerifiedNearby(lat,lng,50.0)</code> — real PostGIS spatial query. 14 unit tests PASS.</p>
+      <p><span class="amber-label">⚠ Duplicate threshold asymmetry:</span> Frontend: |ΔLat|&lt;0.003°≈333 m non-blocking modal. Backend: <code>ST_DWithin(location, point, 50.0)</code> — throws <code>IllegalStateException</code> if duplicate within 50 m. Not specified in M3; discovered in integration testing. Intentionally layered — frontend gives soft early warning, backend is the authoritative rejection boundary. Documented in README.</p>
+
+      <p style="font-size:9px;margin-top:2px"><span style="color:var(--blue-mid);font-weight:600;">⟳ Confidence formula — critical evaluation:</span> The 7-day freshness decay (1.0→0.1) is the most debatable weight. A VERIFIED report with 10 CONFIRM votes that is 8 days old scores ≈0.82 — correctly surfacing trustworthy but potentially stale data. However, the 7-day cliff may be too aggressive for <em>physically permanent</em> barriers (a broken elevator awaiting council repair can stay unresolved for months). A future refinement would make TTL configurable per category: longer for structural barriers (e.g. 30 days), shorter for temporary obstructions (e.g. 3 days).</p>
+
+      <div class="div"></div>
+      <p style="font-size:9px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;">Technical Discoveries During M4 Sprint</p>
+
+      <div class="disc-grid">
+        <div class="disc-box">
+          <div class="disc-label">☕ Java 25 → 17 LTS <code>JAVA_HOME</code></div>
+          <div class="disc-text">Team configured Java 25 (latest available). Spring Boot 3.2 refused to start — <strong>Lombok and annotation processors are not certified for non-LTS Java 25</strong>. Fix: <code>export JAVA_HOME=$(/usr/libexec/java_home -v 17)</code>. Downgrading to Java 17 LTS (minimum for Spring Boot 3.2) resolved all startup failures immediately. Lesson: always pin to LTS releases in annotation-heavy codebases.</div>
+        </div>
+        <div class="disc-box">
+          <div class="disc-label">🗄 PostGIS in <strong>changeset 001</strong></div>
+          <div class="disc-text">Initially assumed PostGIS required manual Docker setup (<code>psql -c 'CREATE EXTENSION postgis'</code>), making environments non-reproducible across team. Discovered Liquibase supports raw SQL — <code>CREATE EXTENSION IF NOT EXISTS postgis;</code> placed in <strong>changeset 001</strong> (first migration). Full DB setup now automated from clean container; changesets 001–010 cover all schema changes end-to-end.</div>
+        </div>
+        <div class="disc-box">
+          <div class="disc-label">⚠ Axios CORS + Spring Security Config Gap</div>
+          <div class="disc-text">The M3 API spec did not document CORS header requirements for Spring Security. During integration, Axios requests were blocked by the browser with CORS errors until Spring Security's <code>CorsConfigurationSource</code> was explicitly configured to allow the Vite dev server origin (<code>http://localhost:5173</code>). Only discovered when the frontend first called a protected endpoint. Lesson: API specifications must include security header requirements, not just endpoint contracts.</div>
+        </div>
+        <div class="disc-box">
+          <div class="disc-label">🖥 Laptop vs. Desktop: 125–150% DPI</div>
+          <div class="disc-text">Testing across team hardware: 125–150% browser DPI scaling (typical on modern laptops) caused UI element overlap and text truncation compared to desktop monitors. <strong>Leaflet click detection also misaligned</strong> at non-standard zoom — map pins unresponsive to direct click. Prototype 2 must be explicitly tested at 100–200% zoom and multiple DPI settings to meet SDG 11 accessibility requirements.</div>
+        </div>
+      </div>
+
+      <div class="div"></div>
+      <p style="font-size:9px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:4px;">M3 Design Reflection</p>
+
+      <div class="finding">
+        <div class="finding-icon ok">✓</div>
+        <div class="finding-text"><strong>Technologies were appropriate.</strong> Spring Boot + React + PostGIS matched team skills, supported geospatial queries, and enabled clean testability within sprint constraints. Monolith over microservices was the right call for a 3-week window.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-icon ok">✓</div>
+        <div class="finding-text"><strong>Trust-loop feature focus was correct.</strong> F-3, F-8, F-12, F-14, F-16 form the system's differentiator. All delivered. Without these, AccessPath would be no different from a static map.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-icon warn">⚠</div>
+        <div class="finding-text"><strong>"AI core" framing was imprecise.</strong> M3 should have stated "deterministic keyword matching" to avoid scope misalignment. The phrase "AI classification" created false expectations — honest re-labelling (45-term keyword-bag, 3 severity tiers) is a better description of what was built.</div>
+      </div>
+      <div class="finding">
+        <div class="finding-icon bad">✕</div>
+        <div class="finding-text"><strong>Field usability was under-scoped in M3.</strong> GPS input and mobile-responsive layout were absent from the M3 prototype feature list despite being essential to reporter (P3 Khalid) and navigator personas operating in the field with a mobile device. The gap between "accessibility platform" mission and desktop-only delivery is the starkest disconnect between the M1 problem statement and Prototype 1's actual usability. A focus-visible CSS patch (extending keyboard outlines from buttons only to all focusable elements, including the Leaflet map wrapper) was merged as a late improvement — demonstrating responsive iteration even within the prototype sprint.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /col 2 -->
+
+
+<!-- ════ COLUMN 3 ════ -->
+<div class="col">
+
+  <!-- 6 · Testing & QA -->
+  <div class="card">
+    <div class="card-header amber">
+      <div class="card-num">6</div>
+      <div class="card-title">Testing &amp; Quality Assurance</div>
+    </div>
+    <div class="card-body">
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-num">232</div><div class="stat-label">Unit Tests</div></div>
+        <div class="stat-box"><div class="stat-num" style="color:var(--green)">61/61</div><div class="stat-label">Integration PASS</div></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-num" style="color:#7a3c00">19</div><div class="stat-label">Manual Frontend</div></div>
+        <div class="stat-box" style="background:var(--navy)"><div class="stat-num" style="color:var(--accent)">312</div><div class="stat-label" style="color:#a0c0d8">Total Tests</div></div>
+      </div>
+      <table class="test-table">
+        <thead><tr><th>Level</th><th>Tool</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Unit</strong></td><td>JUnit 5 + Mockito</td><td><span class="num-badge green">232</span> <span class="pass">0 fail</span></td></tr>
+          <tr><td><strong>Integration</strong></td><td>Python runner vs live DB</td><td><span class="num-badge green">61/61</span> <span class="pass">PASS</span></td></tr>
+          <tr><td><strong>Frontend</strong></td><td>Structured manual — 6 pages</td><td><span class="num-badge">19</span> <span class="pass">PASS</span></td></tr>
+        </tbody>
+      </table>
+      <div class="div"></div>
+      <p style="font-size:9px"><strong>Why Python for integration testing?</strong> Python (standard library only, no extra packages) was chosen for the integration runner over a Java HTTP client test suite because it could be run by any team member without JDK setup, and its output is readable without IDE tooling.</p>
+      <p style="font-size:9px"><strong>Why manual frontend testing?</strong> Automated component testing (Jest + React Testing Library or Cypress) required mocking the Leaflet map component and Spring Security endpoints — too complex to set up within the sprint window. Structured manual test cases (documented with steps and expected outcomes) were used instead across all 6 pages, providing sufficient coverage for a prototype.</p>
+      <p style="font-size:9px"><strong>Coverage:</strong> 7 service classes · 5 controllers · scheduler · JWT security · <code>@ValidCoordinates</code> · exception handler · all 11 REST API groups.</p>
+      <p style="font-size:9px;color:var(--amber);font-weight:600;">⚠ Discovery: seed reports with <code>expires_at</code> in March 2026 expired immediately on startup. Documented in README with DB reset procedure.</p>
+      <div class="callout green" style="font-size:9px;margin-top:5px;margin-bottom:0">
+        <strong>Security implemented:</strong> Spring Security + JJWT (24 h token expiry) · BCrypt password hashing (rounds=10) · <code>@PreAuthorize</code> RBAC enforced at controller level for all MODERATOR-only endpoints · CORS configured per-origin for Spring Security · parameterised JPA/PostGIS queries throughout — no raw SQL string concatenation, preventing SQL injection. Security was not in scope for explicit test cases but is structurally enforced.
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 · Planned vs Delivered WITH REASONS -->
+  <div class="card">
+    <div class="card-header navy">
+      <div class="card-num">7</div>
+      <div class="card-title">Planned vs. Delivered — Why &amp; Project Impact</div>
+    </div>
+    <div class="card-body">
+      <table class="feat-table">
+        <thead><tr><th style="width:32%">Capability</th><th style="width:52px">Status</th><th>Reason &amp; Impact on Project</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>User auth</strong> (JWT + BCrypt)</td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">Spring Security + JJWT integrated cleanly. BCrypt hashing secured passwords. No complications.</td>
+          </tr>
+          <tr>
+            <td><strong>RBAC roles</strong> (3 of 5)</td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">NAVIGATOR, REPORTER, MODERATOR roles cover all prototype scenarios. ADMIN/VIEWER deferred as not required for M4 evaluation flows.</td>
+          </tr>
+          <tr>
+            <td><strong>Report submission</strong> + validation</td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">Custom <code>@ValidCoordinates</code> annotation added beyond M3 spec, improving data integrity. Geotag + timestamp captured as designed.</td>
+          </tr>
+          <tr>
+            <td><strong>Duplicate detection</strong> (50 m)</td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">PostGIS ST_DWithin query works correctly. Threshold mismatch (frontend 333 m vs backend 50 m) discovered in testing — layered defensively, documented in README.</td>
+          </tr>
+          <tr>
+            <td><strong>Classification</strong> → keyword matching</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason">M3 described "AI core." Reduced to deterministic 45-term keyword matching. Auditable and reproducible, but lacks ML sophistication. Improves moderator triage speed but cannot handle novel phrasing or typos.</td>
+          </tr>
+          <tr>
+            <td><strong>Community voting</strong></td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">1-per-user enforced via DB UNIQUE constraint on (user_id, report_id). Votes contribute directly to confidence scores displayed on routes.</td>
+          </tr>
+          <tr>
+            <td><strong>Confidence scoring</strong></td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">Status+votes+freshness formula produces intuitive results. VERIFIED reports with recent creation consistently score &gt;0.7 — directly influences which route users choose.</td>
+          </tr>
+          <tr>
+            <td><strong>Moderation queue</strong> + 4 actions</td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">Verify/Reject/Resolve/Expire work. REQUEST_CLARIFICATION (noted in M3 state diagram) deferred — keeping the lifecycle minimal as planned for the prototype.</td>
+          </tr>
+          <tr>
+            <td><strong>Expiry scheduler</strong> (hourly)</td>
+            <td><span class="chip full">Done ✓</span></td>
+            <td class="reason">Keeps barrier data fresh — stale reports auto-expire, directly supporting SDG 11.2 goal of reliable information. Seed data expiry bug fixed via README procedure.</td>
+          </tr>
+          <tr>
+            <td><strong>Route planning</strong> → demo stub</td>
+            <td><span class="chip partial">Partial</span></td>
+            <td class="reason">Full graph routing (OSRM/ORS) requires significant integration effort beyond the sprint. Hardcoded paths with live barrier warnings are sufficient for demonstrating the suitability concept but not for real navigation.</td>
+          </tr>
+          <tr>
+            <td><strong>Analytics dashboard</strong></td>
+            <td><span class="chip no">Not done</span></td>
+            <td class="reason">Explicitly deferred to future work in M3. Urban Planner persona (UG-4) value cannot be demonstrated — a gap in prototype completeness but not a regression from M3 scope.</td>
+          </tr>
+          <tr>
+            <td><strong>GPS, images, mobile</strong></td>
+            <td><span class="chip no">Not done</span></td>
+            <td class="reason">Never scoped in M3. Manual coordinate entry and desktop-only UI directly limit field usability for reporter and navigator personas — the most significant accessibility gap in Prototype 1.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 8 · Prototype 2 Vision -->
+  <div class="card">
+    <div class="card-header green">
+      <div class="card-num">8</div>
+      <div class="card-title">Prototype 2 — Vision for Second Iteration</div>
+    </div>
+    <div class="card-body">
+      <div class="callout" style="font-size:9px;margin-bottom:5px"><strong>Goal:</strong> close the three critical gaps — real routing, field-ready input, genuine intelligence — to transform AccessPath from a trust-layer proof-of-concept into a usable mobility tool.</div>
+      <div class="p2-grid">
+        <div class="p2-box"><div class="p2-label">🗺 Real Graph Routing</div><div class="p2-text">Integrate OSRM or ORS with PostGIS spatial queries. Preference filters (avoid stairs/inclines) drive real path computation, fully delivering F-1 and F-2.</div></div>
+        <div class="p2-box"><div class="p2-label">📍 GPS + Click-to-Pin</div><div class="p2-text">Replace manual lat/lon entry with GPS geolocation and map-click capture. Critical for field reporters (P3 Khalid) and mobile navigators. Add Nominatim geocoding for address/place search — GPS solves origin input, but route destination input also requires address lookup since users cannot reasonably know destination lat/lng.</div></div>
+        <div class="p2-box"><div class="p2-label">📱 Mobile-First PWA</div><div class="p2-text">Rebuild as Progressive Web App with large touch targets and offline caching. Test across 100–200% browser zoom and DPI scaling settings to address laptop/desktop gap.</div></div>
+        <div class="p2-box"><div class="p2-label">🤖 ML Classification</div><div class="p2-text">Replace keyword matcher with a lightweight text classifier (DistilBERT or TF-IDF + logistic regression). Handles typos, novel phrasing, and reduces moderator burden.</div></div>
+        <div class="p2-box"><div class="p2-label">📊 Analytics Dashboard</div><div class="p2-text">Heatmap + time-series views of barrier density for UG-4 (Urban Planner). Supports evidence-based SDG 11 infrastructure intervention.</div></div>
+        <div class="p2-box"><div class="p2-label">🖼 Photo Attachments</div><div class="p2-text">Visual evidence for moderators, reducing false positives and triage time. Strengthens community trust in the data.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 · Team & Individual Process -->
+  <div class="card">
+    <div class="card-header grey">
+      <div class="card-num">9</div>
+      <div class="card-title">Team &amp; Individual Development Process (M4)</div>
+    </div>
+    <div class="card-body">
+
+      <div class="proc-step">
+        <div class="proc-icon blue">H</div>
+        <div class="proc-text"><strong>Horizontal layer split — not vertical.</strong> The team divided by <em>layer</em>: a backend sub-team owned all Spring Boot services, controllers, repositories, and unit tests; a frontend sub-team owned all React pages, Leaflet integration, and forms. The rationale was specialised skill sets — team members were more confident in one layer than the other. While this aligned with individual strengths, <strong>it was the wrong structure for a 3-week sprint.</strong></div>
+      </div>
+
+      <div class="proc-step">
+        <div class="proc-icon amber">!</div>
+        <div class="proc-text"><strong>Retrospective: horizontal split created avoidable blocking.</strong> Frontend integration-testing could not begin until backend endpoints were stable, stalling work for several days. Vertical slicing — each member owning a complete feature slice from API to UI — would have eliminated these serial dependencies and enabled parallel progress on independent features. For Prototype 2, the recommended approach is <em>feature-based ownership</em> with a shared API contract document agreed upfront, so each member can deliver an independently testable vertical slice without waiting on others.</div>
+      </div>
+
+      <div class="proc-step">
+        <div class="proc-icon blue">C</div>
+        <div class="proc-text"><strong>Coordination approach.</strong> Work was tracked via Git branch per feature; regular syncs resolved integration points — API contract changes, JWT token structure, coordinate precision across services. The Python integration runner acted as a shared integration test harness that any team member could run to verify API compliance across layers. The 61/61 pass rate confirmed clean inter-service boundaries when final integration was performed.</div>
+      </div>
+
+      <div class="proc-step">
+        <div class="proc-icon green">✓</div>
+        <div class="proc-text"><strong>Individual processes → group outcome.</strong> Persona ownership from M2 (P1–P7 assigned per person) carried forward into M4: the team member who defined a persona's requirements in M2/M3 was responsible for the frontend/backend work serving that persona's flows. This maintained traceability from requirements through to implementation and testing.</div>
+      </div>
+
+      <div class="proc-step">
+        <div class="proc-icon red">✕</div>
+        <div class="proc-text"><strong>Significant technical challenges.</strong> (1) <strong>Java 25 incompatibility</strong> — startup failure resolved by downgrading to Java 17 LTS. (2) <strong>PostGIS assumed manual setup</strong> — resolved by moving <code>CREATE EXTENSION</code> into Liquibase changeset 001. (3) <strong>Axios CORS configuration gap</strong> — Spring Security required explicit <code>CorsConfigurationSource</code> setup not documented in M3's API spec; discovered during integration week and fixed by whitelisting the Vite dev server origin (<code>:5173</code>). (4) <strong>Frontend automated testing infeasible</strong> — Leaflet map mock complexity led to structured manual testing. (5) <strong>Laptop/desktop zoom differences</strong> — UI overlap at 125%+ DPI scaling revealed need for responsive accessibility testing. (6) <strong>Seed data expiry</strong> — test reports set to expire in March 2026 triggered immediately on startup.</div>
+      </div>
+
+      <div class="div"></div>
+      <div class="callout blue" style="font-size:9px;margin-bottom:0">
+        <strong>Conclusion:</strong> AccessPath demonstrates that a crowdsourced accessibility trust layer is technically achievable in a student sprint. The core loop — <em>report → vote → moderate → route confidence</em> — works end-to-end, backed by 312 tests. The main gap between plan and delivery lies in the sophistication of "intelligent" components (keyword matching vs ML, hardcoded vs real routing) — honestly documented and a sound foundation for Prototype 2.
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /col 3 -->
+
+</div><!-- /body -->
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <div class="footer-left">LI Software Engineering · Academic Year 2025/26 · Semester 2 · University of Birmingham &nbsp;·&nbsp; A1 Landscape (841 × 594 mm) · @page A1 landscape CSS applied for printing</div>
+  <div class="footer-center">AccessPath — Prototype 1 Evaluation Poster</div>
+  <div class="footer-right">Program Pioneers · March 2026 · Alomairi · Alomari · Esmaeilijhah · Karbasian · Raji · Samie Khalajabadi</div>
+</div>
+
+</div><!-- /poster -->
+</body>
+</html>

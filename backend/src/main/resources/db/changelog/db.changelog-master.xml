@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <include file="db/changelog/changes/001-create-postgis-extension.xml"/>
+    <include file="db/changelog/changes/002-create-users-table.xml"/>
+    <include file="db/changelog/changes/003-create-reports-table.xml"/>
+    <include file="db/changelog/changes/004-create-votes-table.xml"/>
+    <include file="db/changelog/changes/005-create-moderation-actions-table.xml"/>
+    <include file="db/changelog/changes/006-seed-sample-data.xml"/>
+    <include file="db/changelog/changes/007-seed-additional-reports.xml"/>
+    <include file="db/changelog/changes/008-seed-test-accounts.xml"/>
+    <include file="db/changelog/changes/009-update-test-account-passwords.xml"/>
+    <include file="db/changelog/changes/010-update-test-mod-account-password.xml"/>
+
+</databaseChangeLog>

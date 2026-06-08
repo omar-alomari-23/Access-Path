@@ -1,0 +1,31 @@
+# ── macOS ────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Environment / secrets ────────────────────────────────
+# .env is intentionally tracked — assessors need real values to run the project locally
+# (per project brief: "you may need to upload secret keys to GitLab")
+
+# ── Backend (Maven / Java) ───────────────────────────────
+backend/target/
+*.class
+*.jar
+*.war
+
+# IntelliJ IDEA — all project config (IDE-local, not portable)
+backend/.idea/
+!backend/.idea/.gitignore
+
+# Placeholder files (no longer needed once directory has real files)
+.gitkeep
+
+# ── Frontend (Node / Vite) ───────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/*.local
+
+# ── Logs ─────────────────────────────────────────────────
+*.log
+npm-debug.log*
