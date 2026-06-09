@@ -29,3 +29,4 @@ frontend/*.local
 # ── Logs ─────────────────────────────────────────────────
 *.log
 npm-debug.log*
+.env
