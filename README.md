@@ -18,12 +18,27 @@ A crowdsourced accessibility mapping and route-planning application built to sup
 
 ## My Contributions
 
-This was a group Software Engineering project. My main contributions included:
+This was a group Software Engineering project. My main responsibility was implementing key parts of the backend data layer and supporting the database setup for the prototype.
 
-- Contributed to backend/API development
-- Worked on frontend implementation and UI testing
-- Helped with local setup, Docker-based development, and integration debugging
-- Contributed to project documentation, testing evidence, and final project integration
+My contributions included:
+
+- Developed the Liquibase changeset `006-seed-sample-data.xml` to populate the database with realistic sample data for testing and demonstration.
+- Inserted users with different roles, including `NAVIGATOR`, `REPORTER`, and `MODERATOR`.
+- Added reports with multiple statuses, including `PENDING`, `VERIFIED`, and `REJECTED`.
+- Added associated vote and moderation-action records while ensuring valid foreign key relationships and database constraints.
+- Verified the seeded data and relationship integrity using pgAdmin before committing the changes to GitLab.
+- Implemented several Spring Data JPA repository interfaces supporting the backend data access layer:
+  - `UserRepository` for user lookup and validation.
+  - `ReportRepository` for querying reports by status, reporter, and spatial proximity using PostGIS.
+  - `VoteRepository` for duplicate-vote prevention and vote aggregation.
+  - `ModerationActionRepository` for moderation history and audit trail retrieval.
+- Manually tested the voting workflow through the frontend interface, including successful `CONFIRM` vote submission and duplicate-vote prevention.
+- Executed and validated unit tests related to my area of work, including `CoordinateValidatorTest`.
+
+Evidence for the voting workflow is included in:
+
+- `docs/screenshots/appendix-w-fe12-vote-confirm.png`
+- `docs/screenshots/appendix-x-fe13-vote-error.png`
 
 ---
 
