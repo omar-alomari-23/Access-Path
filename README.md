@@ -6,6 +6,27 @@ A crowdsourced accessibility mapping and route-planning application built to sup
 
 ---
 
+## Key Features
+
+- Crowdsourced reporting of accessibility barriers
+- Category filtering for step-free access, surface hazards, obstructions, lighting, and heat/no shade
+- Community voting to confirm or dispute reports
+- Moderator review workflow for verifying, rejecting, resolving, or expiring reports
+- Accessible route planning between two coordinates
+- JWT-based authentication and role-based access control
+- PostgreSQL/PostGIS-backed geospatial data storage
+
+## My Contributions
+
+This was a group Software Engineering project. My main contributions included:
+
+- Contributed to backend/API development
+- Worked on frontend implementation and UI testing
+- Helped with local setup, Docker-based development, and integration debugging
+- Contributed to project documentation, testing evidence, and final project integration
+
+---
+
 ## Table of Contents
 
 1. [Prerequisites](#1-prerequisites)
@@ -22,7 +43,8 @@ A crowdsourced accessibility mapping and route-planning application built to sup
 6. [API Overview](#6-api-overview)
 7. [Screenshots](#7-screenshots)
 8. [Tech Stack](#8-tech-stack)
-9. [Evaluation Poster](#9-evaluation-poster)
+9. [Testing & QA Summary](#9-testing--qa-summary)
+10. [Evaluation Poster](#10-evaluation-poster)
 
 ---
 
@@ -109,7 +131,7 @@ AccessPath/
 │   └── screenshots/                # Appendix evidence screenshots (A–K)
 │
 ├── docker-compose.yml              # PostgreSQL 15 + PostGIS 3.3 container
-├── .env                            # Environment variables (committed for assessors)
+├── .env                            # Local-only environment file, not committed publicly
 ├── .env.example                    # Template showing required variables
 └── README.md
 ```
@@ -118,7 +140,9 @@ AccessPath/
 
 ## 3. Environment Variables
 
-A `.env` file is committed to the repository with all values pre-filled. No manual setup is required — the project runs out of the box with these values.
+A `.env.example` file is included to show the required environment variables. For local development, copy it to `.env` and fill in the values.
+
+The real `.env` file should not be committed to a public repository.
 
 | Variable | Value in `.env` | Description |
 |----------|----------------|-------------|
@@ -148,9 +172,7 @@ cd AccessPath
 
 ### 4.2 Configure environment variables
 
-A `.env` file is already included in the repository with all values pre-filled (per the project brief, secrets are committed so the project can be run locally by assessors).
-
-If for any reason it is missing, copy the template:
+Create a local `.env` file from the provided template:
 
 ```bash
 cp .env.example .env
@@ -390,23 +412,23 @@ The scheduler runs every hour and automatically expires PENDING or VERIFIED repo
 
 ## 7. Screenshots
 
-### Map View
+### Accessibility Map Dashboard
 
 ![AccessPath map view](docs/screenshots/appendix-n-fe3-map.png)
 
-### Report Submission
+### Report Submission Flow
 
 ![Submit accessibility report](docs/screenshots/appendix-o-fe4-draft.png)
 
-### Route Planner
+### Accessible Route Planner
 
 ![Accessible route planner](docs/screenshots/appendix-r-fe7-routes.png)
 
-### Moderation Queue
+### Moderator Review Queue
 
 ![Moderation queue](docs/screenshots/appendix-q-fe6-moderation.png)
 
-### Login
+### Authentication
 
 ![Login page](docs/screenshots/appendix-l-fe1-login.png)
 
@@ -426,7 +448,19 @@ The scheduler runs every hour and automatically expires PENDING or VERIFIED repo
 
 ---
 
-## 9. Evaluation Poster
+## 9. Testing & QA Summary
+
+AccessPath includes **312 total checks/test cases**:
+
+- 232 backend unit tests
+- 61 backend API integration tests
+- 19 frontend manual test cases
+
+The full test plan is documented in [`docs/TEST_PLAN.md`](docs/TEST_PLAN.md).
+
+---
+
+## 10. Evaluation Poster
 
 The Milestone 4 reflective evaluation poster is located at [`docs/poster.html`](docs/poster.html).
 
